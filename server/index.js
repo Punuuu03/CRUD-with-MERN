@@ -14,11 +14,23 @@ mongoose.connect("mongodb://127.0.0.1:27017/curd", {
 }).then(() => console.log("MongoDB connected"))
   .catch(err => console.log(err));
 
-app.get('/', (req, res) => {
-    UserModel.find({})
-        .then(users => res.json(users))
-        .catch(err => res.json(err));
+// app.get('/', (req, res) => {
+//     UserModel.find({})
+//         .then(users => res.json(users))
+//         .catch(err => res.json(err));
+// });
+
+// Example of optimizing GET / endpoint to limit response size
+app.get('/', async (req, res) => {
+    try {
+        const users = await UserModel.find({}).select('name email age'); // Select only necessary fields
+        res.json(users);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
+
 
 app.get('/getUser/:id', (req, res) => {
     const id = req.params.id;
