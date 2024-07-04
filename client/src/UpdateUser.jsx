@@ -10,7 +10,7 @@ function UpdateUser() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('https://crud-with-mern-server.vercel.app/getUser/' + id)
+        axios.get('http://localhost:8081/getUser/' + id)
             .then(result => {
                 console.log(result);
                 setName(result.data.name);
@@ -22,7 +22,7 @@ function UpdateUser() {
 
     const Update = (e) => {
         e.preventDefault();
-        axios.put("https://crud-with-mern-server.vercel.app/updateUser/" + id, { name, email, age })
+        axios.put("http://localhost:8081/updateUser/" + id, { name, email, age })
             .then(result => {
                 console.log(result);
                 navigate('/');

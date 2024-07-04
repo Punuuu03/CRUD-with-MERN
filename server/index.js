@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/curd", {
+mongoose.connect("mongodb+srv://punam:<Punam@12345>@cluster0.ebvnh3q.mongodb.net/crud?retryWrites=true&w=majority&appName=Cluster0", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => console.log("MongoDB connected"))
